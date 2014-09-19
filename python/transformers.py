@@ -38,6 +38,9 @@ def hook_message_send(data, buffer, command):
     for original in replacements:
         text = text.replace(original, replacements[original])
 
+    if text.startswith(">"):
+        text = u"3"+text
+
     if weechat.buffer_get_string(buffer, "name").startswith("bitlbee"):
         text = stripFormatting.sub("", text)
 
